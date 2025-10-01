@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ManikShan Foreign Employment PVT LTD</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom font and basic body setup */
+        body { 
+            font-family: "Inter", sans-serif; 
+            background-color: #eef2ff; /* Light indigo background */
+        }
+        /* Style inputs for better consistency and focus on mobile */
+        input[type="text"], input[type="email"], input[type="date"], textarea {
+            transition: all 0.2s;
+            /* Ensure full width on all screen sizes by default, as desired for mobile */
+            width: 100%; 
+        }
+        input:focus, textarea:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.4); /* Indigo-500 focus ring */
+            border-color: #6366f1; /* Indigo-500 */
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+
+<div class="container bg-white p-4 sm:p-10 rounded-xl shadow-2xl mx-auto w-full max-w-5xl border border-indigo-200">
+    <h1 class="text-2xl sm:text-4xl font-extrabold text-indigo-800 text-center mb-2">
+        ManikShan Foreign Employment Resume
+    </h1>
+    <p class="text-center text-gray-500 mb-8 text-sm sm:text-base">
+        Fill out the sections below and use the "Download Resume PDF" button to generate your professional document.
+    </p>
+
+    <div class="flex justify-center mb-8">
+        <button type="button" onclick="generatePDF()" class="w-full md:w-1/2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-lg text-lg shadow-md transition duration-200 ease-in-out">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block mr-2" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L10 11.586l2.293-2.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+            Download Resume PDF
+        </button>
+    </div>
+
+    <form id="resumeForm" class="space-y-10">
+
+        <section class="border border-indigo-300 rounded-lg p-5 bg-indigo-50">
+            <h2 class="text-xl sm:text-2xl font-bold text-indigo-700 mb-4 border-b pb-2">1. J1 INFORMATION</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <input type="text" id="firstName" placeholder="First Name" class="p-3 border border-gray-300 rounded-lg">
+                <input type="text" id="lastName" placeholder="Last Name" class="p-3 border border-gray-300 rounded-lg">
+                <input type="text" id="middleName" placeholder="Middle Name (Optional)" class="p-3 border border-gray-300 rounded-lg">
+                <input type="text" id="nickname" placeholder="Nickname (Optional)" class="p-3 border border-gray-300 rounded-lg">
+                <input type="text" id="nationality" placeholder="Nationality" class="p-3 border border-gray-300 rounded-lg">
+                <input type="text" id="birthplace" placeholder="Birthplace City and Country" class="p-3 border border-gray-300 rounded-lg">
+                <input type="text" id="residence" placeholder="Country of Residence" class="p-3 border border-gray-300 rounded-lg">
+                <input type="date" id="dob" placeholder="Date of Birth (mm/dd/yyyy)" class="p-3 border border-gray-300 rounded-lg">
+                <input type="email" id="email" placeholder="Email Address" class="p-3 border border-gray-300 rounded-lg">
+                <input type="text" id="phone" placeholder="Phone Number (as dialed from the USA)" class="p-3 border border-gray-300 rounded-lg">
+                <input type="text" id="skype" placeholder="Skype ID" class="p-3 border border-gray-300 rounded-lg">
+                <input type="text" id="j1Training" placeholder="J1 Training of Interest / Department" class="p-3 border border-gray-300 rounded-lg">
+            </div>
+            
+            <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="flex flex-col md:flex-row md:items-center md:space-x-4 space-y-2 md:space-y-0">
+                    <span class="font-medium text-gray-700">Marital Status:</span>
+                    <div class="flex space-x-4">
+                        <label class="flex items-center"><input type="radio" name="maritalStatus" value="Single" class="mr-1 text-indigo-600"> Single</label>
+                        <label class="flex items-center"><input type="radio" name="maritalStatus" value="Married" class="mr-1 text-indigo-600"> Married</label>
+                    </div>
+                </div>
+                <div class="flex flex-col md:flex-row md:items-center md:space-x-4 space-y-2 md:space-y-0">
+                    <span class="font-medium text-gray-700">Gender:</span>
+                    <div class="flex space-x-4">
+                        <label class="flex items-center"><input type="radio" name="gender" value="M" class="mr-1 text-indigo-600"> M</label>
+                        <label class="flex items-center"><input type="radio" name="gender" value="F" class="mr-1 text-indigo-600"> F</label>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="border border-indigo-300 rounded-lg p-5 bg-indigo-50">
+            <h2 class="text-xl sm:text-2xl font-bold text-indigo-700 mb-4 border-b pb-2">2. EDUCATION (Most Recent First)</h2>
+            <div id="educationContainer" class="space-y-6">
+                <div class="education-item border border-gray-200 p-4 rounded-lg bg-white shadow-sm">
+                    <h3 class="text-lg font-semibold text-gray-700 mb-3">Education Entry 1</h3>
+                    <input type="text" placeholder="Name of University or Higher Education" class="p-3 border border-gray-300 rounded-lg mb-3 education-school">
+                    <input type="text" placeholder="Type of Degree, Diploma or Certificate / Major Field of Study" class="p-3 border border-gray-300 rounded-lg mb-3 education-degree">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                        <input type="text" placeholder="Location / Country" class="p-3 border border-gray-300 rounded-lg education-location">
+                        <input type="text" placeholder="Start Date (e.g., Dec 2016)" class="p-3 border border-gray-300 rounded-lg education-start">
+                        <input type="text" placeholder="End Date (e.g., July 2017)" class="p-3 border border-gray-300 rounded-lg education-end">
+                    </div>
+                </div>
+                <div class="education-item border border-gray-200 p-4 rounded-lg bg-white shadow-sm">
+                    <h3 class="text-lg font-semibold text-gray-700 mb-3">Education Entry 2</h3>
+                    <input type="text" placeholder="Name of University or Higher Education" class="p-3 border border-gray-300 rounded-lg mb-3 education-school">
+                    <input type="text" placeholder="Type of Degree, Diploma or Certificate / Major Field of Study" class="p-3 border border-gray-300 rounded-lg mb-3 education-degree">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                        <input type="text" placeholder="Location / Country" class="p-3 border border-gray-300 rounded-lg education-location">
+                        <input type="text" placeholder="Start Date (e.g., mm/dd/yyyy)" class="p-3 border border-gray-300 rounded-lg education-start">
+                        <input type="text" placeholder="End Date (e.g., 2016 (A/L))" class="p-3 border border-gray-300 rounded-lg education-end">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="border border-indigo-300 rounded-lg p-5 bg-indigo-50">
+            <h2 class="text-xl sm:text-2xl font-bold text-indigo-700 mb-4 border-b pb-2">3. SKILLS & ADDITIONAL INFORMATION</h2>
+            <div class="space-y-4">
+                <div>
+                    <label for="computerSkills" class="block font-medium text-gray-700 mb-1">Computer Skills (Word, Excel, email, etc.)</label>
+                    <textarea id="computerSkills" rows="3" class="p-3 border border-gray-300 rounded-lg"></textarea>
+                </div>
+                <div>
+                    <label for="hotelSoftware" class="block font-medium text-gray-700 mb-1">Hotel Computer Software Programs (PMS, POS, etc.)</label>
+                    <textarea id="hotelSoftware" rows="3" class="p-3 border border-gray-300 rounded-lg"></textarea>
+                </div>
+                <div>
+                    <label for="otherLanguages" class="block font-medium text-gray-700 mb-1">Other Languages (list ALL you speak)</label>
+                    <textarea id="otherLanguages" rows="2" class="p-3 border border-gray-300 rounded-lg"></textarea>
+                </div>
+                <div class="pt-2">
+                    <label class="block font-medium text-gray-700 mb-2">Have you ever visited the US?</label>
+                    <div class="flex space-x-4"> 
+                        <label class="flex items-center"><input type="radio" name="visitedUS" value="Yes" class="mr-1 text-indigo-600"> Yes</label>
+                        <label class="flex items-center"><input type="radio" name="visitedUS" value="No" class="mr-1 text-indigo-600"> No</label>
+                    </div>
+                    <input type="text" id="usVisaType" placeholder="If Yes, what type of Visa have you had? (list all)" class="p-3 border border-gray-300 rounded-lg mt-3">
+                </div>
+            </div>
+        </section>
+        
+        <section class="border border-indigo-300 rounded-lg p-5 bg-indigo-50">
+            <h2 class="text-xl sm:text-2xl font-bold text-indigo-700 mb-4 border-b pb-2">4. PROFESSIONAL EXPERIENCE (Most Recent First)</h2>
+            <div id="experienceContainer" class="space-y-8">
+                <div class="experience-item border border-gray-200 p-4 rounded-lg bg-white shadow-sm">
+                    <h3 class="text-lg font-semibold text-gray-700 mb-3">Job 1: Most Recent / Current</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
+                        <input type="text" placeholder="Company Name" class="p-3 border border-gray-300 rounded-lg experience-company">
+                        <input type="text" placeholder="Job Title" class="p-3 border border-gray-300 rounded-lg experience-title">
+                    </div>
+                    <input type="text" placeholder="City and Country" class="p-3 border border-gray-300 rounded-lg mb-3 experience-location">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
+                        <input type="text" placeholder="Start Date (e.g., 3rd of March 2025)" class="p-3 border border-gray-300 rounded-lg experience-start">
+                        <input type="text" placeholder="End Date (e.g., Present / Date)" class="p-3 border border-gray-300 rounded-lg experience-end">
+                    </div>
+                    <textarea placeholder="Describe Job Duties (list a lot of details and information)" rows="5" class="p-3 border border-gray-300 rounded-lg experience-duties"></textarea>
+                </div>
+
+                <div class="experience-item border border-gray-200 p-4 rounded-lg bg-white shadow-sm">
+                    <h3 class="text-lg font-semibold text-gray-700 mb-3">Job 2</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
+                        <input type="text" placeholder="Company Name" class="p-3 border border-gray-300 rounded-lg experience-company">
+                        <input type="text" placeholder="Job Title" class="p-3 border border-gray-300 rounded-lg experience-title">
+                    </div>
+                    <input type="text" placeholder="City and Country" class="p-3 border border-gray-300 rounded-lg mb-3 experience-location">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
+                        <input type="text" placeholder="Start Date (e.g., 5th of October 2021)" class="p-3 border border-gray-300 rounded-lg experience-start">
+                        <input type="text" placeholder="End Date (e.g., 18th of February 2025)" class="p-3 border border-gray-300 rounded-lg experience-end">
+                    </div>
+                    <textarea placeholder="Describe Job Duties (list a lot of details and information)" rows="5" class="p-3 border border-gray-300 rounded-lg experience-duties"></textarea>
+                </div>
+
+                <div class="experience-item border border-gray-200 p-4 rounded-lg bg-white shadow-sm">
+                    <h3 class="text-lg font-semibold text-gray-700 mb-3">Job 3</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
+                        <input type="text" placeholder="Company Name" class="p-3 border border-gray-300 rounded-lg experience-company">
+                        <input type="text" placeholder="Job Title" class="p-3 border border-gray-300 rounded-lg experience-title">
+                    </div>
+                    <input type="text" placeholder="City and Country" class="p-3 border border-gray-300 rounded-lg mb-3 experience-location">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
+                        <input type="text" placeholder="Start Date (e.g., 15th of August 2019)" class="p-3 border border-gray-300 rounded-lg experience-start">
+                        <input type="text" placeholder="End Date (e.g., 10th of March, 2021)" class="p-3 border border-gray-300 rounded-lg experience-end">
+                    </div>
+                    <textarea placeholder="Describe Job Duties (list a lot of details and information)" rows="5" class="p-3 border border-gray-300 rounded-lg experience-duties"></textarea>
+                </div>
+            </div>
+            <button type="button" onclick="addExperienceEntry()" class="mt-4 w-full text-sm py-2 px-4 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition duration-150">
+                + Add Another Experience Entry
+            </button>
+        </section>
+
+    </form>
+</div>
+
+<script>
+    // The JavaScript remains the same as its focus is data collection and PDF generation, 
+    // not client-side layout adjustments. The 'addExperienceEntry' function was also adjusted 
+    // to use 'grid-cols-1' for mobile friendliness.
+
+    let jobCounter = 4;
+    function addExperienceEntry() {
+        const container = document.getElementById('experienceContainer');
+        const newItem = document.createElement('div');
+        newItem.className = 'experience-item border border-gray-200 p-4 rounded-lg bg-white shadow-sm mt-4';
+        newItem.innerHTML = `
+            <div class="flex justify-between items-center mb-3">
+                <h3 class="text-lg font-semibold text-gray-700">Job ${jobCounter}</h3>
+                <button type="button" onclick="this.parentNode.parentNode.remove()" class="text-red-500 hover:text-red-700 text-sm">Remove</button>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3"> 
+                <input type="text" placeholder="Company Name" class="p-3 border border-gray-300 rounded-lg experience-company">
+                <input type="text" placeholder="Job Title" class="p-3 border border-gray-300 rounded-lg experience-title">
+            </div>
+            <input type="text" placeholder="City and Country" class="p-3 border border-gray-300 rounded-lg mb-3 experience-location">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3"> 
+                <input type="text" placeholder="Start Date" class="p-3 border border-gray-300 rounded-lg experience-start">
+                <input type="text" placeholder="End Date" class="p-3 border border-gray-300 rounded-lg experience-end">
+            </div>
+            <textarea placeholder="Describe Job Duties (list a lot of details and information)" rows="5" class="p-3 border border-gray-300 rounded-lg experience-duties"></textarea>
+        `;
+        container.appendChild(newItem);
+        jobCounter++;
+    }
+
+
+    function getData() {
+        // Collect data from the form fields
+        const formData = {
+            // J1 Information
+            fullName: `${document.getElementById('firstName').value} ${document.getElementById('middleName').value ? document.getElementById('middleName').value + ' ' : ''}${document.getElementById('lastName').value}`,
+            firstName: document.getElementById('firstName').value,
+            lastName: document.getElementById('lastName').value,
+            nickname: document.getElementById('nickname').value,
+            nationality: document.getElementById('nationality').value,
+            birthplace: document.getElementById('birthplace').value,
+            residence: document.getElementById('residence').value,
+            dob: document.getElementById('dob').value,
+            email: document.getElementById('email').value,
+            phone: document.getElementById('phone').value,
+            skype: document.getElementById('skype').value,
+            j1Training: document.getElementById('j1Training').value,
+            maritalStatus: document.querySelector('input[name="maritalStatus"]:checked')?.value || 'N/A',
+            gender: document.querySelector('input[name="gender"]:checked')?.value || 'N/A',
+
+            // Education
+            education: Array.from(document.querySelectorAll('.education-item')).map(item => ({
+                school: item.querySelector('.education-school').value,
+                degree: item.querySelector('.education-degree').value,
+                location: item.querySelector('.education-location').value,
+                start: item.querySelector('.education-start').value,
+                end: item.querySelector('.education-end').value,
+            })).filter(e => e.school || e.degree),
+
+            // Skills
+            computerSkills: document.getElementById('computerSkills').value,
+            hotelSoftware: document.getElementById('hotelSoftware').value,
+            otherLanguages: document.getElementById('otherLanguages').value,
+            visitedUS: document.querySelector('input[name="visitedUS"]:checked')?.value || 'No',
+            usVisaType: document.getElementById('usVisaType').value,
+
+            // Experience
+            experience: Array.from(document.querySelectorAll('.experience-item')).map(item => ({
+                company: item.querySelector('.experience-company').value,
+                title: item.querySelector('.experience-title').value,
+                location: item.querySelector('.experience-location').value,
+                start: item.querySelector('.experience-start').value,
+                end: item.querySelector('.experience-end').value,
+                duties: item.querySelector('.experience-duties').value,
+            })).filter(e => e.company || e.title)
+        };
+        return formData;
+    }
+
+    function generatePDF() {
+        const data = getData();
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF({ orientation: 'p', unit: 'mm', format: 'a4' });
+        
+        let yPos = 15;
+        const marginX = 15;
+        const docWidth = doc.internal.pageSize.getWidth();
+        const contentWidth = docWidth - (2 * marginX);
+        const lineHeight = 5;
+
+        // Helper function for adding titles
+        const addTitle = (text, size, color, style = 'bold') => {
+            doc.setFontSize(size).setFont(undefined, style).setTextColor(color);
+            doc.text(text, marginX, yPos);
+            yPos += lineHeight * 1.5;
+        };
+
+        // Helper function for page breaks
+        const checkPageBreak = (spaceNeeded) => {
+            if (yPos + spaceNeeded > doc.internal.pageSize.getHeight() - 15) {
+                doc.addPage();
+                yPos = 15;
+            }
+        };
+
+        // --- Header and Contact Info ---
+        doc.setFontSize(22).setFont(undefined, 'bold').setTextColor('#3730a3'); // Indigo 700
+        doc.text("ManikShan Foreign Employment RESUME", docWidth / 2, yPos, { align: 'center' });
+        yPos += 10;
+        
+        doc.setFontSize(10).setFont(undefined, 'normal').setTextColor('#475569'); // Slate 600
+        doc.text(`Name: ${data.fullName}`, marginX, yPos);
+        doc.text(`Email: ${data.email}`, marginX + contentWidth * 0.4, yPos);
+        doc.text(`Phone: ${data.phone}`, marginX + contentWidth * 0.75, yPos);
+        yPos += lineHeight;
+        doc.text(`Skype ID: ${data.skype || 'N/A'}`, marginX, yPos);
+        doc.text(`J1 Interest: ${data.j1Training || 'N/A'}`, marginX + contentWidth * 0.4, yPos);
+        yPos += lineHeight * 2;
+        
+        // --- J1 INFORMATION ---
+        checkPageBreak(35);
+        addTitle("1. J1 INFORMATION", 16, '#1e40af'); // Blue 800
+        doc.setLineWidth(0.5).setDrawColor('#93c5fd').line(marginX, yPos - 5, docWidth - marginX, yPos - 5);
+        doc.setFontSize(10).setTextColor('#000000').setFont(undefined, 'normal');
+
+        const j1Details = [
+            `Nationality: ${data.nationality}`,
+            `DOB: ${data.dob}`,
+            `Birthplace: ${data.birthplace}`,
+            `Residence: ${data.residence}`,
+            `Marital Status: ${data.maritalStatus}`,
+            `Gender: ${data.gender}`
+        ];
+        
+        let col1Y = yPos;
+        let col2Y = yPos;
+        j1Details.forEach((detail, index) => {
+            if (index % 2 === 0) {
+                doc.text(detail, marginX, col1Y);
+                col1Y += lineHeight;
+            } else {
+                doc.text(detail, marginX + contentWidth * 0.5, col2Y);
+                col2Y += lineHeight;
+            }
+        });
+        yPos = Math.max(col1Y, col2Y) + 5;
+
+
+        // --- EDUCATION ---
+        checkPageBreak(50);
+        addTitle("2. EDUCATION (Most Recent First)", 16, '#1e40af'); // Blue 800
+        doc.setLineWidth(0.5).setDrawColor('#93c5fd').line(marginX, yPos - 5, docWidth - marginX, yPos - 5);
+        
+        data.education.forEach(edu => {
+            if (!edu.school) return;
+            checkPageBreak(25);
+            doc.setFontSize(11).setFont(undefined, 'bold').setTextColor('#000000');
+            doc.text(`${edu.school}`, marginX, yPos);
+            doc.setFontSize(10).setFont(undefined, 'normal').setTextColor('#475569');
+            doc.text(`${edu.start} - ${edu.end}`, marginX + contentWidth * 0.5, yPos);
+            yPos += lineHeight;
+            
+            doc.setFontSize(10).setFont(undefined, 'italic').setTextColor('#1f2937'); // Gray 800
+            doc.text(`${edu.degree} | ${edu.location}`, marginX, yPos);
+            yPos += lineHeight * 1.5;
+        });
+        yPos += 5;
+
+        // --- SKILLS ---
+        checkPageBreak(60);
+        addTitle("3. SKILLS AND ADDITIONAL INFORMATION", 16, '#1e40af'); // Blue 800
+        doc.setLineWidth(0.5).setDrawColor('#93c5fd').line(marginX, yPos - 5, docWidth - marginX, yPos - 5);
+        
+        const addSkillBlock = (title, content) => {
+            if (!content) return;
+            checkPageBreak(20);
+            doc.setFontSize(11).setFont(undefined, 'bold').setTextColor('#000000');
+            doc.text(title, marginX, yPos);
+            yPos += lineHeight * 0.7;
+            
+            doc.setFontSize(10).setFont(undefined, 'normal').setTextColor('#475569');
+            const splitContent = doc.splitTextToSize(content, contentWidth);
+            doc.text(splitContent, marginX, yPos);
+            yPos += splitContent.length * lineHeight + 5;
+        };
+
+        addSkillBlock("Computer Skills:", data.computerSkills);
+        addSkillBlock("Hotel Computer Software programs:", data.hotelSoftware);
+        addSkillBlock("Other Languages:", data.otherLanguages);
+        
+        // US Visit
+        checkPageBreak(15);
+        doc.setFontSize(10).setFont(undefined, 'bold').setTextColor('#000000');
+        doc.text(`Visited US: ${data.visitedUS}`, marginX, yPos);
+        if (data.visitedUS === 'Yes' && data.usVisaType) {
+            doc.setFont(undefined, 'normal').setTextColor('#475569');
+            doc.text(`| Visa Type: ${data.usVisaType}`, marginX + contentWidth * 0.25, yPos);
+        }
+        yPos += lineHeight * 2;
+
+
+        // --- PROFESSIONAL EXPERIENCE ---
+        checkPageBreak(30);
+        addTitle("4. PROFESSIONAL EXPERIENCE (MOST RECENT FIRST)", 16, '#1e40af'); // Blue 800
+        doc.setLineWidth(0.5).setDrawColor('#93c5fd').line(marginX, yPos - 5, docWidth - marginX, yPos - 5);
+
+        data.experience.forEach(job => {
+            if (!job.company) return; // Skip empty entries
+            
+            checkPageBreak(40);
+            
+            // Company & Title
+            doc.setFontSize(12).setFont(undefined, 'bold').setTextColor('#000000');
+            doc.text(job.company, marginX, yPos);
+            doc.text(job.title, marginX + contentWidth * 0.5, yPos);
+            yPos += lineHeight * 0.8;
+            
+            // Dates & Location
+            doc.setFontSize(10).setFont(undefined, 'normal').setTextColor('#475569');
+            doc.text(`${job.start} - ${job.end}`, marginX + contentWidth * 0.5, yPos);
+            doc.text(job.location, marginX, yPos);
+            yPos += lineHeight * 1.5;
+
+            // Duties
+            doc.setFontSize(10).setFont(undefined, 'normal').setTextColor('#1f2937');
+            doc.text('Job Duties:', marginX, yPos);
+            
+            doc.setFont(undefined, 'normal').setTextColor('#475569');
+            // Split duties by newline and prepend bullet points
+            const dutiesContentLines = job.duties.split('\n').map(line => line.trim()).filter(line => line.length > 0);
+            
+            let dutyText = [];
+            dutiesContentLines.forEach(line => {
+                const splitLine = doc.splitTextToSize(`• ${line}`, contentWidth);
+                dutyText = dutyText.concat(splitLine);
+            });
+
+            if (dutyText.length > 0) {
+                 doc.text(dutyText, marginX, yPos + lineHeight * 0.8);
+                 yPos += dutyText.length * lineHeight + 5;
+            } else {
+                 yPos += lineHeight + 5;
+            }
+        });
+
+        // --- Save PDF ---
+        doc.save(`IRES_Resume_${data.lastName || 'Applicant'}_${data.firstName || 'Resume'}.pdf`);
+    }
+
+</script>
+
+</body>
+</html>
