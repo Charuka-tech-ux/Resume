@@ -49,17 +49,8 @@
         ManikShan Foreign Employment Resume
     </h1>
     <p class="text-center text-gray-500 mb-8 text-sm sm:text-base">
-        Fill out the sections below and use the "Download Resume PDF" button to generate your professional document.
+        Fill out the sections below and use the "Download Resume PDF" button at the bottom to generate your professional document.
     </p>
-
-    <div class="flex justify-center mb-8">
-        <button type="button" onclick="generatePDF()" class="w-full md:w-1/2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-lg text-lg shadow-md transition duration-200 ease-in-out">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block mr-2" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L10 11.586l2.293-2.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
-            </svg>
-            Download Resume PDF
-        </button>
-    </div>
 
     <form id="resumeForm" class="space-y-10">
 
@@ -257,7 +248,7 @@
             <div id="experienceContainer" class="space-y-8">
                 <div class="experience-item border border-gray-200 p-4 rounded-lg bg-white shadow-sm">
                     <h3 class="text-lg font-semibold text-gray-700 mb-3">Job 1: Most Recent / Current</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-3">
                         <div>
                             <label class="question-label">Company Name</label>
                             <input type="text" placeholder="e.g., The Grand Hotel" class="p-3 border border-gray-300 rounded-lg experience-company">
@@ -266,11 +257,23 @@
                             <label class="question-label">Job Title</label>
                             <input type="text" placeholder="e.g., Sous Chef" class="p-3 border border-gray-300 rounded-lg experience-title">
                         </div>
+                         <div>
+                            <label class="question-label">Company Website</label>
+                            <input type="text" placeholder="e.g., www.grandhotel.com" class="p-3 border border-gray-300 rounded-lg experience-website">
+                        </div>
                     </div>
-                    <div>
-                         <label class="question-label">City and Country</label>
-                         <input type="text" placeholder="e.g., Nuwara Eliya, Sri Lanka" class="p-3 border border-gray-300 rounded-lg mb-3 experience-location">
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
+                        <div>
+                            <label class="question-label">City and Country</label>
+                            <input type="text" placeholder="e.g., Nuwara Eliya, Sri Lanka" class="p-3 border border-gray-300 rounded-lg experience-location">
+                        </div>
+                         <div>
+                            <label class="question-label">Work Location Details (Department/Section)</label>
+                            <input type="text" placeholder="e.g., Fine Dining Restaurant, Culinary Department" class="p-3 border border-gray-300 rounded-lg experience-work-location">
+                        </div>
                     </div>
+
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
                         <div>
                              <label class="question-label">Start Date</label>
@@ -281,6 +284,12 @@
                              <input type="date" class="p-3 border border-gray-300 rounded-lg experience-end">
                         </div>
                     </div>
+
+                    <div class="mb-3">
+                        <label class="question-label">Company/Supervisor Contact (Name / Number / Email)</label>
+                        <input type="text" placeholder="e.g., Chef Aravinda / +94... / hr@grandhotel.com" class="p-3 border border-gray-300 rounded-lg experience-contact">
+                    </div>
+
                     <div>
                          <label class="question-label">Job Duties</label>
                          <textarea placeholder="Describe Job Duties (list a lot of details and information)" rows="5" class="p-3 border border-gray-300 rounded-lg experience-duties"></textarea>
@@ -289,7 +298,7 @@
 
                 <div class="experience-item border border-gray-200 p-4 rounded-lg bg-white shadow-sm">
                     <h3 class="text-lg font-semibold text-gray-700 mb-3">Job 2</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-3">
                         <div>
                             <label class="question-label">Company Name</label>
                             <input type="text" placeholder="e.g., Blue Ocean Resort" class="p-3 border border-gray-300 rounded-lg experience-company">
@@ -298,11 +307,23 @@
                             <label class="question-label">Job Title</label>
                             <input type="text" placeholder="e.g., Demi Chef de Partie" class="p-3 border border-gray-300 rounded-lg experience-title">
                         </div>
+                         <div>
+                            <label class="question-label">Company Website</label>
+                            <input type="text" placeholder="e.g., www.blueocean.com" class="p-3 border border-gray-300 rounded-lg experience-website">
+                        </div>
                     </div>
-                    <div>
-                        <label class="question-label">City and Country</label>
-                        <input type="text" placeholder="e.g., Galle, Sri Lanka" class="p-3 border border-gray-300 rounded-lg mb-3 experience-location">
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
+                        <div>
+                            <label class="question-label">City and Country</label>
+                            <input type="text" placeholder="e.g., Galle, Sri Lanka" class="p-3 border border-gray-300 rounded-lg experience-location">
+                        </div>
+                         <div>
+                            <label class="question-label">Work Location Details (Department/Section)</label>
+                            <input type="text" placeholder="e.g., Main Kitchen, Pastry Section" class="p-3 border border-gray-300 rounded-lg experience-work-location">
+                        </div>
                     </div>
+
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
                         <div>
                             <label class="question-label">Start Date</label>
@@ -313,6 +334,12 @@
                             <input type="date" class="p-3 border border-gray-300 rounded-lg experience-end">
                         </div>
                     </div>
+
+                    <div class="mb-3">
+                        <label class="question-label">Company/Supervisor Contact (Name / Number / Email)</label>
+                        <input type="text" placeholder="e.g., HR Manager Kamal / +94... / hr@resort.com" class="p-3 border border-gray-300 rounded-lg experience-contact">
+                    </div>
+
                     <div>
                         <label class="question-label">Job Duties</label>
                         <textarea placeholder="Describe Job Duties (list a lot of details and information)" rows="5" class="p-3 border border-gray-300 rounded-lg experience-duties"></textarea>
@@ -323,8 +350,16 @@
                 + Add Another Experience Entry
             </button>
         </section>
-
-    </form>
+        
+        <div class="flex justify-center pt-8 pb-4">
+            <button type="button" onclick="generatePDF()" class="w-full md:w-1/2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-lg text-lg shadow-md transition duration-200 ease-in-out">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block mr-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L10 11.586l2.293-2.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+                Download Resume PDF
+            </button>
+        </div>
+        </form>
 </div>
 
 <script>
@@ -396,7 +431,7 @@
                     <h3 class="text-lg font-semibold text-gray-700">Job ${counter}</h3>
                     <button type="button" onclick="this.parentNode.parentNode.remove(); updateEntryNumbers('experience')" class="text-red-500 hover:text-red-700 text-sm">Remove</button>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3"> 
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-3">
                     <div>
                         <label class="question-label">Company Name</label>
                         <input type="text" placeholder="Company Name" class="p-3 border border-gray-300 rounded-lg experience-company">
@@ -405,10 +440,20 @@
                         <label class="question-label">Job Title</label>
                         <input type="text" placeholder="Job Title" class="p-3 border border-gray-300 rounded-lg experience-title">
                     </div>
+                    <div>
+                        <label class="question-label">Company Website</label>
+                        <input type="text" placeholder="e.g., www.company.com" class="p-3 border border-gray-300 rounded-lg experience-website">
+                    </div>
                 </div>
-                <div>
-                    <label class="question-label">City and Country</label>
-                    <input type="text" placeholder="City and Country" class="p-3 border border-gray-300 rounded-lg mb-3 experience-location">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
+                    <div>
+                        <label class="question-label">City and Country</label>
+                        <input type="text" placeholder="City and Country" class="p-3 border border-gray-300 rounded-lg experience-location">
+                    </div>
+                    <div>
+                        <label class="question-label">Work Location Details (Department/Section)</label>
+                        <input type="text" placeholder="e.g., Department, Section" class="p-3 border border-gray-300 rounded-lg experience-work-location">
+                    </div>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3"> 
                     <div>
@@ -419,6 +464,10 @@
                         <label class="question-label">End Date</label>
                         <input type="date" class="p-3 border border-gray-300 rounded-lg experience-end">
                     </div>
+                </div>
+                <div class="mb-3">
+                    <label class="question-label">Company/Supervisor Contact (Name / Number / Email)</label>
+                    <input type="text" placeholder="e.g., Contact Name / Number / Email" class="p-3 border border-gray-300 rounded-lg experience-contact">
                 </div>
                 <div>
                     <label class="question-label">Job Duties</label>
@@ -497,8 +546,11 @@
             // Experience
             experience: Array.from(document.querySelectorAll('.experience-item')).map(item => ({
                 company: item.querySelector('.experience-company').value,
+                website: item.querySelector('.experience-website').value,
                 title: item.querySelector('.experience-title').value,
                 location: item.querySelector('.experience-location').value,
+                workLocation: item.querySelector('.experience-work-location').value,
+                contact: item.querySelector('.experience-contact').value,
                 start: item.querySelector('.experience-start').value,
                 end: item.querySelector('.experience-end').value,
                 duties: item.querySelector('.experience-duties').value,
@@ -665,7 +717,7 @@
         data.experience.forEach(job => {
             if (!job.company) return; // Skip empty entries
             
-            checkPageBreak(40);
+            checkPageBreak(50);
             
             // Company & Title
             doc.setFontSize(12).setFont(undefined, 'bold').setTextColor('#000000');
@@ -673,11 +725,20 @@
             doc.text(job.title, marginX + contentWidth * 0.5, yPos);
             yPos += lineHeight * 0.8;
             
-            // Dates & Location
+            // Location, Website, and Dates
             doc.setFontSize(10).setFont(undefined, 'normal').setTextColor('#475569');
-            doc.text(`${formatDate(job.start)} - ${formatDate(job.end)}`, marginX + contentWidth * 0.5, yPos);
             doc.text(job.location, marginX, yPos);
+            doc.text(`Website: ${job.website || 'N/A'}`, marginX + contentWidth * 0.5, yPos);
+            yPos += lineHeight;
+
+            doc.text(`Location Detail: ${job.workLocation || 'N/A'}`, marginX, yPos);
+            doc.text(`Dates: ${formatDate(job.start)} - ${formatDate(job.end)}`, marginX + contentWidth * 0.5, yPos);
+            yPos += lineHeight;
+
+            // Contact Info
+            doc.text(`Contact: ${job.contact || 'N/A'}`, marginX, yPos);
             yPos += lineHeight * 1.5;
+
 
             // Duties
             doc.setFontSize(10).setFont(undefined, 'bold').setTextColor('#1f2937');
